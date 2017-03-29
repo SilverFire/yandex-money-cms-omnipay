@@ -194,12 +194,18 @@ class GatewayIndividual extends AbstractGateway
 	{
 		return $this->getParameter('cancelUrl');
 	}		
+
+    /**
+     * @deprecated Use completePurchase() instead
+     */
 	public function authorize(array $parameters = array())
+    {
+        return $this->completePurchase($parameters);
+    }
+	public function completePurchase(array $parameters = array())
     {
         return $this->createRequest('\yandexmoney\YandexMoney\Message\IndividualAuthorizeRequest', $parameters);
     }
-
-	 
     public function purchase(array $parameters = array())
     {
         return $this->createRequest('\yandexmoney\YandexMoney\Message\IndividualPurchaseRequest', $parameters);
